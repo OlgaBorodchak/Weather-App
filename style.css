@@ -154,6 +154,10 @@ h2 {
     border: #7c7c7c6b solid 1px;
 }
 
+.search-bar::placeholder {
+    color: white;
+}
+
 .error-msg {
     font-size: .8rem;
     padding-left: .8em;
@@ -189,13 +193,3 @@ h2 {
         width: auto;
     }
 }
-
-
-
-
-
-
-
-
-
-
