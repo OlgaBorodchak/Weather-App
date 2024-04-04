@@ -22,13 +22,18 @@ main {
 }
 
 .heading {
-    font-size: clamp(2rem, 0.9437rem + 4.507vw, 5rem);
-    font-weight: 200;
+    width: 100%;
+    max-width: 30em;
+    background-color: #000000d0;
+    border-radius: 1.3em;
+    padding: 0.2em 0 .5em 0;
+    color: white;
 }
 
-.row {
-    display: flex;
-    align-items: center;
+.heading h1 {
+    font-size: clamp(2rem, 0.9437rem + 4.507vw, 4rem);
+    font-weight: 400;
+    text-align: center;
 }
 
 .container {
@@ -56,10 +61,11 @@ main {
 .date {
     margin-bottom: 2em;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 .weekday {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 400;
 }
 
@@ -103,7 +109,7 @@ h2 {
 .grid {
     display: grid;
     grid-gap: .5em;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     margin-bottom: 1em;
 }
 
@@ -112,17 +118,15 @@ h2 {
 }
 
 .details-item {
+    display: flex;
+    align-items: center;
     background-color: #7c7c7c6b;
     border-radius: 1em;
 }
 
-.weather-icon {
+.icon {
     width: 2.5em;
     height: 2.5em;
-}
-
-.icon {
-    width: 100%;
 }
 
 .details {
@@ -200,5 +204,9 @@ h2 {
     .container {
         width: auto;
         margin: 2em;
+    }
+
+    .heading {
+        max-width: 20em;
     }
 }
