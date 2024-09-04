@@ -52,7 +52,9 @@ function displayResult(result) {
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = `${result.main.humidity}<span>%</span>`;
 
-    document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + `${result.name}` + "')";
+    //document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + `${result.name}` + "')";
+    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${result.name}')`;
+
 
     cardOne.style.display = "block";
     errorMsg.style.display = "none";
