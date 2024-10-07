@@ -1,9 +1,12 @@
 const api = {
     endpoint: "https://api.openweathermap.org/data/2.5/",
-    key: "77fc3821b7e37a09204b855f9791e47e"
+    key: "77fc3821b7e37a09204b855f9791e47e",
+    unsplashEndpoint: "https://api.unsplash.com/search/photos",
+    unsplashKey: "7DxzC-huXT5vktGEKS4epvvK-K0CHvmZCte7EuuYXAM"
 }
 
 const searchBar = document.querySelector(".search-bar");
+
 searchBar.addEventListener("keypress", enter);
 
 const errorMsg = document.querySelector(".error-msg");
@@ -16,7 +19,7 @@ function enter(e) {
 }
 
 async function getInfo(data) {
-    const res = await fetch(`${api.endpoint}weather?q=${data}&units=metric&appID=${api.key}`);
+    const res = await fetch(`${api.endpoint}weather?q=${data}&units=metric&appid=${api.key}`); 
     
     if(res.status == 404) {
         errorMsg.style.display = "block";
@@ -24,6 +27,27 @@ async function getInfo(data) {
     } else {
         const result = await res.json();
         displayResult(result);
+        getUnsplashImage(result.name);
+    }
+}
+
+async function getUnsplashImage(cityName) {
+                document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?landscape')";
+
+    const res = await fetch(`${api.unsplashEndpoint}?query=${cityName} downtown&client_id=${api.unsplashKey}&per_page=50`);
+
+    if (res.ok) {
+        const data = await res.json();
+       
+        if (data.results.length > 0) {
+            const randomIndex = Math.floor(Math.random() * data.results.length);
+            const imageUrl = data.results[randomIndex].urls.regular;
+            document.body.style.backgroundImage = `url('${imageUrl}')`;
+        } else {
+            console.error("No images found for the city on Unsplash");
+        }
+    } else {
+        console.error("Error fetching image from Unsplash");
     }
 }
 
@@ -38,7 +62,7 @@ function displayResult(result) {
     temperature.innerHTML = `${Math.round(result.main.temp)}<span>°C</span>`;
 
     let feelsLike = document.querySelector(".feelsLike");
-    feelsLike.innerHTML = `Feels like: ${Math.round(result.main.feels_like)}<span>°C</span>`;
+    feelsLike.innerHTML = `Feels like ${Math.round(result.main.feels_like)}<span>°C</span>`;
     
     let conditions = document.querySelector("#description");
     conditions.textContent = `${result.weather[0].main}`;
@@ -52,13 +76,8 @@ function displayResult(result) {
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = `${result.main.humidity}<span>%</span>`;
 
-    //document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + `${result.name}` + "')";
-    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${result.name}')`;
-
-
     cardOne.style.display = "block";
     errorMsg.style.display = "none";
-
 }
 
 function getDate() {
