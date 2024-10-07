@@ -6,7 +6,8 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url(https://source.unsplash.com/1600x900/?landscape); 
+    background: rgb(34,193,195);
+    background: linear-gradient(16deg, rgba(34,193,195,1) 0%, rgba(244,67,165,1) 100%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,22 +19,17 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 4em;
+    height: 100vh;
 }
 
-.heading {
-    width: 100%;
-    max-width: 30em;
-    background-color: #000000d0;
-    border-radius: 1.3em;
-    padding: 0.2em 0 .5em 0;
-    color: white;
+.heading{
+    font-size: clamp(2rem, 0.9437rem + 4.507vw, 5rem);
+    font-weight: 200;
 }
 
-.heading h1 {
-    font-size: clamp(2rem, 0.9437rem + 4.507vw, 4rem);
-    font-weight: 400;
-    text-align: center;
+.row {
+    display: flex;
+    align-items: center;
 }
 
 .container {
@@ -61,11 +57,10 @@ main {
 .date {
     margin-bottom: 2em;
     text-align: center;
-    font-size: 1.3rem;
 }
 
 .weekday {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 
@@ -109,8 +104,10 @@ h2 {
 .grid {
     display: grid;
     grid-gap: .5em;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     margin-bottom: 1em;
+    margin-top: 4em;
 }
 
 .grid > div {
@@ -120,27 +117,36 @@ h2 {
 .details-item {
     display: flex;
     align-items: center;
-    background-color: #7c7c7c6b;
+    justify-content: space-evenly;
+    background-color: hsla(0, 0%, 0%, 0.412);
     border-radius: 1em;
 }
 
-.icon {
+.details {
+    text-align: center;
+}
+
+
+
+.weather-icon {
     width: 2.5em;
     height: 2.5em;
 }
 
-.details {
-    margin-left: 1em;
+.icon {
+    display: block;
+    max-width: 100%;
 }
+
 
 .par-value {
     font-weight: 900;
-    font-size: 1.25rem;
+    font-size: clamp(0.75rem, 0.518vw + 0.629rem, 1.25rem);
 }
 
 .par-name {
     font-weight: 200;
-    font-size: 0.8rem;
+    font-size: clamp(0.5rem, 0.324vw + 0.424rem, 0.813rem);
 }
 
 .search-bar {
@@ -150,7 +156,7 @@ h2 {
     border: none;
     border-radius: 1.3em;
     color: white;
-    background-color: #7c7c7c2b;
+    background-color: hsla(0, 0%, 49%, 0.169);
     font-family: inherit;
 }
 
@@ -191,22 +197,15 @@ h2 {
     background-color: #7c7c7c6b;
 }
 
-.accessible_elem {
-    clip: rect(1px 1px 1px 1px); /* IE 6/7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-}
 
 @media all and (max-width: 800px) {
-    .container {
-        width: auto;
-        margin: 2em;
+
+    .details-icon {
+        width: 1.3em;
+        height: 1.3em;
     }
 
-    .heading {
-        max-width: 20em;
+    .icon {
+        max-width: 50%;
     }
 }
